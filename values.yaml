@@ -111,6 +111,10 @@ mariadb:
 # Enabled postgres
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
+  # Update repo for postgresql bitnami -> bitnamilegacy
+  image:
+    repository: bitnamilegacy/postgresql
+    tag: 11
   enabled: true
   postgresqlUsername: pdns
   postgresqlPassword: pdnspass
