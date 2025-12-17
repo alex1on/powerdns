@@ -114,7 +114,7 @@ postgresql:
   # Update repo for postgresql bitnami -> bitnamilegacy
   image:
     repository: bitnamilegacy/postgresql
-    tag: 11
+    tag: 10
   enabled: true
   postgresqlUsername: pdns
   postgresqlPassword: pdnspass
