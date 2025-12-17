@@ -1,31 +1,73 @@
 apiVersion: v1
 entries:
-  powerdns:
-  - apiVersion: v2
-    appVersion: v4.3.1
-    created: "2025-12-16T08:02:40.276448489Z"
+  mariadb:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 10.6.10
+    created: "2025-12-17T09:46:01.083426904Z"
     dependencies:
-    - condition: postgresql.enabled
-      name: postgresql
+    - name: common
       repository: https://charts.bitnami.com/bitnami
-      version: 10.16.2
-    - condition: mariadb.enabled
-      name: mariadb
-      repository: https://charts.bitnami.com/bitnami
-      version: 10.5.1
-    deprecated: true
-    description: PowerDNS is a DNS server, written in C++ and licensed under the GPL.
-      It runs on most Unix derivatives. PowerDNS features a large number of different
-      backends ranging from simple BIND style zonefiles to relational databases and
-      load balancing/failover algorithms. A DNS recursor is provided as a separate
-      program.
-    digest: 7f8c7fa89c4a67cc156695546f4e18cf36f5c71c9a60e4f2511f9e2393c8b91d
-    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/powerdns
-    icon: https://avatars.githubusercontent.com/u/1282630?s=200&v=4
-    name: powerdns
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: 379a976941df8265bf379a929007d316867645d43d40100ad2509bd319083b27
+    home: https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+    icon: https://bitnami.com/assets/stacks/mariadb/img/mariadb-stack-220x234.png
+    keywords:
+    - mariadb
+    - mysql
+    - database
+    - sql
+    - prometheus
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: mariadb
     sources:
-    - http://www.github.com/PowerDNS/
+    - https://github.com/bitnami/containers/tree/main/bitnami/mariadb
+    - https://github.com/prometheus/mysqld_exporter
+    - https://mariadb.org
     urls:
-    - powerdns-5.0.0.tgz
-    version: 5.0.0
-generated: "2025-12-16T08:02:40.249377149Z"
+    - charts/mariadb-11.3.3.tgz
+    version: 11.3.3
+  postgresql:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 14.5.0
+    created: "2025-12-17T09:46:01.089335678Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: PostgreSQL (Postgres) is an open source object-relational database
+      known for reliability and data integrity. ACID-compliant, it supports foreign
+      keys, joins, views, triggers and stored procedures.
+    digest: fd7937464e52c1e643c45cbbf3758bcedfab41753d6cb34c6b4969ec1d77d0e8
+    home: https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-220x234.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/containers/tree/main/bitnami/postgresql
+    - https://www.postgresql.org/
+    urls:
+    - charts/postgresql-11.9.13.tgz
+    version: 11.9.13
+generated: "2025-12-17T09:46:01.077481431Z"
