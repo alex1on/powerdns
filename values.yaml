@@ -59,7 +59,7 @@ tolerations: []
 affinity: {}
 
 powerdns:
-  api_key: pdnsapikey      
+  api_key: pdnsapikey
   domain: osm.local
   postgres:
     username: pdns
@@ -70,7 +70,13 @@ powerdns:
     password: pdnspass
     database: pdns
   dnssec: true
-  config: {}
+  config:
+    launch: gpgsql
+    gpgsql-host: powerdns-db
+    gpgsql-user: pdns
+    gpgsql-password: pdns-pass
+    gpgsql-dbname: pdns
+    gpgsql-dnssec: yes
   additionalEnv: []
   #  - name: PGSQL_HOST
   #    valueFrom:
@@ -116,6 +122,7 @@ postgresql:
     repository: bitnamilegacy/postgresql
     tag: 10
   enabled: true
+  fullnameOverride: powerdns-db
   postgresqlUsername: pdns
   postgresqlPassword: pdnspass
   postgresqlPostgresPassword: pdnsadminpass
