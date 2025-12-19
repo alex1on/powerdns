@@ -133,8 +133,29 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", "let a=0; while [ $a -lt 200 ]; do sleep 5; let a=a+1; echo 'Attempt: '$a; if nc -vz {{ printf "%s-%s" .Release.Name "postgresql"}} 5432; then pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null && break; pdnsutil create-zone {{ .Values.powerdns.domain }}; fi; done"]
+                #command: ["/bin/sh", "-c", "let a=0; while [ $a -lt 200 ]; do sleep 5; let a=a+1; echo 'Attempt: '$a; if nc -vz {{ printf "%s-%s" .Release.Name "postgresql"}} 5432; then pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null && break; pdnsutil create-zone {{ .Values.powerdns.domain }}; fi; done"]
 {{ end }}
+                command: 
+                - "/bin/sh"
+                - "-c"
+                - |
+                  # Dynamic DB Host Calculation
+                  {{- $dbHost := printf "%s-%s" .Release.Name "postgresql" }}
+                  {{- if .Values.postgresql.fullnameOverride }}
+                    {{- $dbHost = .Values.postgresql.fullnameOverride }}
+                  {{- end }}
+                  
+                  let a=0; 
+                  while [ $a -lt 200 ]; do 
+                    sleep 5; 
+                    let a=a+1; 
+                    echo 'Attempt: '$a; 
+                    # Use the calculated variable $dbHost
+                    if nc -vz {{ $dbHost }} 5432; then 
+                      pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null && break; 
+                      pdnsutil create-zone {{ .Values.powerdns.domain }}; 
+                    fi; 
+                  done
           resources:
 {{- toYaml .Values.resources | nindent 12 }}
       volumes:
