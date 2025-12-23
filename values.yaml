@@ -116,23 +116,41 @@ mariadb:
 
 # Enabled postgres
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
-postgresql:
+#postgresql:
   # Update repo for postgresql bitnami -> bitnamilegacy
-  image:
-    repository: bitnamilegacy/postgresql
-    tag: 10
-  enabled: true
-  initdbScriptsConfigMap: "{{ .Release.Name }}-init-scripts"
+#  image:
+#    repository: bitnamilegacy/postgresql
+#    tag: 10
+#  enabled: true
+#  initdbScriptsConfigMap: "{{ .Release.Name }}-init-scripts"
   #initdbScriptsConfigMap: ./templates/initdb-configmap.yaml
   #intidbScripts: { initdb.sql }
-  fullnameOverride: powerdns-db
-  postgresqlUsername: pdns
-  postgresqlPassword: pdnspass
-  postgresqlPostgresPassword: pdnsadminpass
-  postgresqlDatabase: pdns
-  persistence:
-    enabled: false
+#  fullnameOverride: powerdns-db
+#  postgresqlUsername: pdns
+#  postgresqlPassword: pdnspass
+#  postgresqlPostgresPassword: pdnsadminpass
+#  postgresqlDatabase: pdns
+#  persistence:
+#    enabled: false
     # storageClass: ""
+
+# Migrating values for tag: 11.6.3
+postgresql:
+  image:
+    repository: bitnamilegacy/postgresql
+    tag: 11.6.3
+  enabled: true
+  fullnameOverride: powerdns-db
+  auth:
+    username: pdns
+    password: pdnspass
+    database: pdns
+    postgresPassword: pdnsadminpass
+  primary:
+    initdb:
+      scriptsConfigMap: "{{ .Release.Name }}-init-scripts"
+    persistence:
+      enabled: false
 
 
 # Probes configuration
