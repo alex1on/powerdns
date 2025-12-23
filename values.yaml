@@ -122,7 +122,8 @@ postgresql:
     repository: bitnamilegacy/postgresql
     tag: 10
   enabled: true
-  initdbScriptsConfigMap: "{{ .Release.Name }}-init-scripts"
+  #initdbScriptsConfigMap: "{{ .Release.Name }}-init-scripts"
+  initdbScriptsConfigMap: ./templates/initdb-configmap.yaml
   fullnameOverride: powerdns-db
   postgresqlUsername: pdns
   postgresqlPassword: pdnspass
