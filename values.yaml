@@ -147,8 +147,8 @@ postgresql:
     database: pdns
     postgresPassword: pdnsadminpass
   primary:
-    initdb:
-      scriptsConfigMap: "{{ .Release.Name }}-init-scripts"
+    #initdb:
+    #  scriptsConfigMap: "{{ .Release.Name }}-init-scripts"
     persistence:
       enabled: false
 
