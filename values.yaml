@@ -124,6 +124,7 @@ postgresql:
   enabled: true
   #initdbScriptsConfigMap: "{{ .Release.Name }}-init-scripts"
   initdbScriptsConfigMap: ./templates/initdb-configmap.yaml
+  intidbScripts: { initdb.sql }
   fullnameOverride: powerdns-db
   postgresqlUsername: pdns
   postgresqlPassword: pdnspass
