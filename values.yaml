@@ -138,7 +138,7 @@ mariadb:
 postgresql:
   image:
     repository: bitnamilegacy/postgresql
-    tag: 11.6.3
+    tag: 17.6.0-debian-12-r4
   enabled: true
   fullnameOverride: powerdns-db
   auth:
